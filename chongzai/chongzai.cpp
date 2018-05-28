@@ -17,36 +17,47 @@ public:
 	}
 	void setvalue(int a, int b);
 	void display();
-	CTeet add(CTeet & obif);
+//	CTeet add(CTeet & obif);
 	CTeet operator +(CTeet & ojbf);
+	CTeet operator -(CTeet & ojbf);
 };
 void CTeet::setvalue(int a, int b)
 {
+	int g;
 	feet = a + b / 12;
 	inch = b % 12;
+	if (feet < 0)
+	{
+		if (inch > 0)
+		{
+			g = feet * 12 + inch;
+			feet = g / 12;
+			inch = g % 12;
+		}
+	}
 }
 void CTeet::display()
 {
 	cout << feet << "Ó¢³ß" << inch << "Ó¢´ç" << endl;
 }
-CTeet CTeet::add(CTeet & objf)
+CTeet CTeet::operator+(CTeet & oj)
 {
 	CTeet temp;
-	temp.setvalue(feet + objf.feet, inch + objf.inch);
+	temp.setvalue(feet + oj.feet, inch + oj.inch);
 	return temp;
 }
-CTeet CTeet::operator+(CTeet & ojbf)
+CTeet CTeet::operator -(CTeet & bf)
 {
-	CTeet temp;
-	temp.setvalue(feet + ojbf.feet, inch + ojbf.inch);
-	return temp;
+	CTeet pow;
+	pow.setvalue(feet - bf.feet, inch - bf.inch);
+	return pow;
 }
 int main()
 {
-	CTeet a, b, c;
-	a.setvalue(10, 8);
-	b.setvalue(7, 6);
-	c = a + b;
+	CTeet a, b, c, d;
+	a.setvalue(1, 3);
+	b.setvalue(2, 2);
+	c = a - b;
 	c.display();
     return 0;
 }
