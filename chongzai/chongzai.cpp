@@ -18,12 +18,12 @@ public:
 	void setvalue(int a, int b);
 	void display();
 //	CTeet add(CTeet & obif);
-	CTeet operator +(CTeet & ojbf);
-	CTeet operator -(CTeet & ojbf);
+	CTeet operator +(CTeet & oj);
+	CTeet operator -(CTeet & bf);
 };
 void CTeet::setvalue(int a, int b)
 {
-	int g;
+	int g,m;
 	feet = a + b / 12;
 	inch = b % 12;
 	if (feet < 0)
@@ -33,6 +33,23 @@ void CTeet::setvalue(int a, int b)
 			g = feet * 12 + inch;
 			feet = g / 12;
 			inch = g % 12;
+		}
+		else//(inch<0)
+		{
+			
+		}
+	}
+	else//(feet>0)
+	{
+		if (inch > 0)
+		{
+
+		}
+		else//(inch<0)
+		{
+			m = feet * 12 + inch;
+			feet = m / 12;
+			inch = m % 12;
 		}
 	}
 }
@@ -50,13 +67,49 @@ CTeet CTeet::operator -(CTeet & bf)
 {
 	CTeet pow;
 	pow.setvalue(feet - bf.feet, inch - bf.inch);
+	cout << feet - bf.feet << "Ó¢³ß" << inch - bf.inch << "Ó¢´ç" << endl;
 	return pow;
+}
+class CFeet
+{
+private:
+	int feet;
+	int inch;
+public:
+	CFeet()
+	{
+		feet = 0;
+		inch = 0;
+	}
+	void setvalue(int a, int b);
+	void display();
+	CFeet operator -(CFeet & oj);
+};
+void CFeet::setvalue(int a, int b)
+{
+	feet = a + b / 12;
+	inch = b % 12;
+}
+CFeet CFeet::operator-(CFeet & oj)
+{
+	CFeet sum;
+	sum.setvalue(feet - oj.feet, inch - oj.inch);
+	return sum;
+}
+void CFeet::display()
+{
+	cout << feet << "Ó¢³ß" << inch << "Ó¢´ç==>" << endl;
 }
 int main()
 {
-	CTeet a, b, c, d;
-	a.setvalue(1, 3);
-	b.setvalue(2, 2);
+	CFeet q, w, e;
+	q.setvalue(3, 5);
+	w.setvalue(4, 4);
+	e = q - w;
+	e.display();
+	CTeet a, b, c;
+	a.setvalue(3, 5);
+	b.setvalue(4, 4);
 	c = a - b;
 	c.display();
     return 0;
